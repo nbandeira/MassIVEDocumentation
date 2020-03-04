@@ -96,12 +96,14 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li><a href="../workflows/maestro/">Maestro workflow</a>: identification of peptide-spectrum matches (PSMs) by i) spectral library search (MSPLIT) for detection of known reference peptides, followed by ii) restricted database search with known modifications (MSGF+), and finally followed by iii) open-modification search (MODa) for identification of peptides with unexpected modifications.</li>
 <li>
-<p>Maestro primarily identifies modified peptide <strong>variants</strong>: distinct pairs (S,M) where S is a peptide sequence and M is the summed mass of all 'delta-mass' modifications assigned on sequence S. This abstraction is required for proper control of false discovery rates at PSM and peptide levels in Maestro; the resolution of delta-masses into putative modifications and modification sites is done with ModDecode as described below.</p>
+<p>Maestro primarily identifies modified <strong>peptide variants</strong>: distinct pairs (S,M) where S is a peptide sequence and M is the summed mass of all 'delta-mass' modifications assigned on sequence S. This abstraction is required for proper control of false discovery rates at PSM and peptide levels in Maestro; the resolution of delta-masses into putative modifications and modification sites is done with ModDecode as described below.</p>
 </li>
 <li>
 <p><a href="../workflows/moddecode/">ModDecode workflow</a>: post-processing of modified PSMs for i) resolution of delta-masses into known UniMod modifications for PSMs with unexpected modifications, ii) site assignment at fixed false localization rate and iii) calculation of AlignGF p-values between differently-modified versions of the same peptide.</p>
 </li>
+<li>ModDecode primarily identifies modified <strong>peptidoforms</strong>: peptide sequences with site-resolved modifications whose masses were matched to known UniMod entries for putative resolution into (possibly combinations of) known modifications or amino acid polymorphisms.</li>
 </ul>
+<p>The following sections focus on different aspects of the analysis of modifications and modified peptides.</p>
 <h3 id="analyzing-modifications">Analyzing modifications</h3>
 <h3 id="analyzing-variants">Analyzing variants</h3>
 
