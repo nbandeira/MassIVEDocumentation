@@ -92,14 +92,18 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     
 
     <h1 id="analysis-of-post-translational-modifications-using-ccms-tools">Analysis of Post-Translational Modifications using CCMS tools</h1>
-<p>We use two different workflows - test change 2</p>
+<p>We use two different workflows for identification of modifications</p>
 <ul>
-<li><a href="../workflows/maestro/">Maestro workflow</a></li>
-<li><a href="../workflows/moddecode/">ModDecode workflow</a></li>
+<li>
+<p><a href="../workflows/maestro/">Maestro workflow</a>: identification of peptide-spectrum matches (PSMs) by i) spectral library search (MSPLIT) for detection of known reference peptides, followed by ii) restricted database search with known modifications (MSGF+), and finally followed by iii) open-modification search (MODa) for identification of peptides with unexpected modifications.
+<strong> Maestro primarily identifies modified peptide </strong>variants**: distinct pairs (S,M) where S is a peptide sequence and M is the summed mass of all 'delta-mass' modifications assigned on sequence S. This abstraction is required for proper control of false discovery rates at PSM and peptide levels in Maestro; the resolution of delta-masses into putative modifications and modification sites is done with ModDecode as described below.</p>
+</li>
+<li>
+<p><a href="../workflows/moddecode/">ModDecode workflow</a>: post-processing of modified PSMs for i) resolution of delta-masses into known UniMod modifications for PSMs with unexpected modifications, ii) site assignment at fixed false localization rate and iii) calculation of AlignGF p-values between differently-modified versions of the same peptide.</p>
+</li>
 </ul>
-<h2 id="analyzing-modifications">Analyzing modifications</h2>
-<h2 id="analyzing-variants">Analyzing variants</h2>
-<p>Test new line of text</p>
+<h3 id="analyzing-modifications">Analyzing modifications</h3>
+<h3 id="analyzing-variants">Analyzing variants</h3>
 
   <br>
     
