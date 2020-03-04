@@ -120,33 +120,24 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ul>
 </li>
 </ol>
-<h4 id="other-considerations-for-the-inspection-of-modifications">Other considerations for the inspection of modifications</h4>
+<p>Other considerations for the inspection of modifications</p>
 <ul>
 <li>The identification of a modification in a sample is only as good as the best PSM evidence that can be provided for that modification. See below for considerations for identification of modified peptidoforms.</li>
-<li>Different modifications can have very similar mass; for example, several modifications and amino acid polymorphisms have <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_knownmod#%7B%22main.mass_lowerinput%22%3A%2214%22%2C%22main.mass_upperinput%22%3A%2214%22%7D">integer mass of 14 Da</a> and very close or indistinguishable mono-isotopic masses.<ul>
-<li>Example peptide <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_spectrum#%7B%22Index_lowerinput%22%3A%221337854%22%2C%22Index_upperinput%22%3A%221337854%22%7D">ATAASSSSLE+13.979K</a>, with Carbonyl modification on E10; note mass of highest-intensity modified y-ion ion y7 at 751.35, matching the theoretical mass 751.347 with mass error &lt; 5 ppm. Other modified y ion masses further confirm this assignment.</li>
-<li>Example peptide <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_spectrum#%7B%22Index_lowerinput%22%3A%221660252%22%2C%22Index_upperinput%22%3A%221660252%22%7D">ATAASSSSLE+14.016K</a>, with Methylation modification on E10; note mass of highest-intensity modified y-ion ion y7 at 751.387, matching the theoretical mass 751.387 with mass error &lt; 5 ppm. Other modified y ion masses further confirm this assignment.</li>
+<li>Different modifications can have very similar mass; for example, several modifications and amino acid polymorphisms have <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_knownmod#%7B%22main.mass_lowerinput%22%3A%2214%22%2C%22main.mass_upperinput%22%3A%2214%22%7D">integer mass of 14 Da</a> and very close or indistinguishable mono-isotopic masses.</li>
+<li>The same modification can occur on multiple different amino acids and sites: for example, the first 3 modified peptidoforms for peptide VGAHAGEYGAEALER <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_spectrum#%7B%22modFragNum_lowerinput%22%3A%222%22%2C%22calcPV_lowerinput%22%3A%2210%22%2C%22minRatio_lowerinput%22%3A%22.5%22%2C%22table_sort_history%22%3A%22curatedPept_asc%3BunmodPept_asc%3BminRatio_dsc%22%2C%22numMod_upperinput%22%3A%221%22%2C%22unmodPept_input%22%3A%22.VGAHAGEYGAEALER.%22%2C%22ModAnnotation_input%22%3A%22%2B16%2C%22%7D">shown on this list</a> localize the +15.995 Da mass offset to 3 different sites (once as an oxidation on Y and twice as polymorphisms of A to S, all resulting from teh exact same change in elemental composition), each supported by multiple site-localizing b and y ions at mass error &lt;= 10 ppm.</li>
 </ul>
-</li>
-<li>The same modification can occur on multiple different amino acids and sites:  </li>
-</ul>
-<h4 id="next-level">next level</h4>
 <h3 id="analyzing-peptide-variants-and-peptidoforms">Analyzing peptide variants and peptidoforms</h3>
-<ol>
-<li>Analyzing peptide variants<ul>
-<li>First establish that it's the correct peptide - inspect the fragmentation pattern and compare it to that of related (possibly unmodified) variants of the same peptide</li>
-</ul>
-</li>
-<li>Analyzing peptide modification masses<ul>
-<li>Are there are other, higher-reliability modifications of similar mass identified on the same peptide? If yes, is there enough evidence to call an additional modification?</li>
-</ul>
-</li>
-<li>Analyzing modification sites<ul>
-<li>Is the same modification (or a different modification of the same mass) identified elsewhere on the same peptide? If yes, are there enough site-assignment peaks between the two sites to call an additional modification site?</li>
-<li>Filter the PSMs view for <strong>"DtFlrPeaks"</strong> &gt;= 2: </li>
-</ul>
-</li>
-</ol>
+<p>Analyzing peptide variants
+    * First establish that it's the correct peptide - inspect the fragmentation pattern and compare it to that of related (possibly unmodified) variants of the same peptide
+    * (1) Copy input PSM string from ModDecode row and use it to filter Clusters view in Maestro and (2) click on the "Spectral networks" link to open the network
+    * (1a) Copy input PSM string from ModDecode row and use it to filter Spectral Networks view in Maestro + Click "Visualize Network" and (2) Label nodes with peptide strings and (3) Search for peptide string</p>
+<p>Analyzing peptide modification masses
+    * Are there are other, higher-reliability modifications of similar mass identified on the same peptide? If yes, is there enough evidence to call an additional modification?
+    * Example peptide <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_spectrum#%7B%22Index_lowerinput%22%3A%221337854%22%2C%22Index_upperinput%22%3A%221337854%22%7D">ATAASSSSLE+13.979K</a>, with Carbonyl modification on E10; note mass of highest-intensity modified y-ion ion y7 at 751.35, matching the theoretical mass 751.347 with mass error &lt; 5 ppm. Other modified y ion masses further confirm this assignment.
+    * Example peptide <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_spectrum#%7B%22Index_lowerinput%22%3A%221660252%22%2C%22Index_upperinput%22%3A%221660252%22%7D">ATAASSSSLE+14.016K</a>, with Methylation modification on E10; note mass of highest-intensity modified y-ion ion y7 at 751.387, matching the theoretical mass 751.387 with mass error &lt; 5 ppm. Other modified y ion masses further confirm this assignment.</p>
+<p>Analyzing modification sites
+    * Is the same modification (or a different modification of the same mass) identified elsewhere on the same peptide? If yes, are there enough site-assignment peaks between the two sites to call an additional modification site?
+    * Filter the PSMs view for <strong>"DtFlrPeaks"</strong> &gt;= 2: </p>
 <h3 id="analyzing-hypermodified-regions">Analyzing hypermodified regions</h3>
 <h3 id="analyzing-putative-novel-modifications">Analyzing putative novel modifications</h3>
 
