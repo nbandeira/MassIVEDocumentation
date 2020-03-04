@@ -34,7 +34,7 @@
         var pageToc = [
           {title: "Analysis of Post-Translational Modifications using CCMS tools", url: "#_top", children: [
               {title: "Analyzing known modifications", url: "#analyzing-known-modifications" },
-              {title: "Analyzing peptidoforms", url: "#analyzing-peptidoforms" },
+              {title: "Analyzing peptide variants and peptidoforms", url: "#analyzing-peptide-variants-and-peptidoforms" },
               {title: "Analyzing hypermodified regions", url: "#analyzing-hypermodified-regions" },
               {title: "Analyzing putative novel modifications", url: "#analyzing-putative-novel-modifications" },
           ]},
@@ -111,14 +111,42 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ul>
 <p>The following sections focus on different aspects of the analysis of modifications and modified peptides. All links below use two example jobs whose results will be reported soon: a <a href="https://proteomics2.ucsd.edu/ProteoSAFe/status.jsp?task=de809a3717cc4d96a3a5257e290351d5">Maestro job</a> co-analyzing colon samples from the draft proteomes and a colon cancer dataset and the corresponding <a href="https://proteomics2.ucsd.edu/ProteoSAFe/status.jsp?task=790e82c2ef1541748521db1e94b24fe0">ModDecode</a> job with resolved modifications and peptidoforms.</p>
 <h3 id="analyzing-known-modifications">Analyzing known modifications</h3>
-<ul>
-<li>Start with ModDecode list of <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_knownmod">UniMod modifications</a>; the default sorting order is by decreasing number of distinct peptides identified with each modification. </li>
-<li>Additional important criteria for inspection of modifications:<ol>
-<li>test sub-item in numbered lists 1</li>
-</ol>
-</li>
+<ol>
+<li>Start with ModDecode list of <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_knownmod">UniMod modifications</a>; the default sorting order is by decreasing number of distinct peptides identified with each modification (<strong>"#Pepts"</strong>). </li>
+<li>Additional important criteria for inspection of modifications:<ul>
+<li><strong>"% Explained"</strong> &gt;= 0.5: filter for modifications with at least one PSM with &gt;= 50% intensity explained by theoretical ions derived from the modified peptidoform sequence</li>
+<li><strong>"MaxModFrags"</strong> &gt;= 2: filter for modifications with at least one PSM with &gt;= 2 spectrum peaks assigned to modified ion fragments</li>
+<li><strong>"PValue"</strong> &gt;= 10: filter for modifications with at least one PSM matching a differently-modified (e.g., unmodified) PSM of the same peptide with an AlignGF p-value &lt;= 1e-10</li>
 </ul>
-<h3 id="analyzing-peptidoforms">Analyzing peptidoforms</h3>
+</li>
+</ol>
+<h4 id="other-considerations-for-the-inspection-of-modifications">Other considerations for the inspection of modifications</h4>
+<ul>
+<li>The identification of a modification in a sample is only as good as the best PSM evidence that can be provided for that modification. See below for considerations for identification of modified peptidoforms.</li>
+<li>Different modifications can have very similar mass; for example, several modifications and amino acid polymorphisms have <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_knownmod#%7B%22main.mass_lowerinput%22%3A%2214%22%2C%22main.mass_upperinput%22%3A%2214%22%7D">integer mass of 14 Da</a> and very close or indistinguishable mono-isotopic masses.<ul>
+<li>Example peptide <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_spectrum#%7B%22Index_lowerinput%22%3A%221337854%22%2C%22Index_upperinput%22%3A%221337854%22%7D">ATAASSSSLE+13.979K</a>, with Carbonyl modification on E10; note mass of highest-intensity modified y-ion ion y7 at 751.35, matching the theoretical mass 751.347 with mass error &lt; 5 ppm. Other modified y ion masses further confirm this assignment.</li>
+<li>Example peptide <a href="https://proteomics2.ucsd.edu/ProteoSAFe/result.jsp?task=790e82c2ef1541748521db1e94b24fe0&amp;view=t_group_by_spectrum#%7B%22Index_lowerinput%22%3A%221660252%22%2C%22Index_upperinput%22%3A%221660252%22%7D">ATAASSSSLE+14.016K</a>, with Methylation modification on E10; note mass of highest-intensity modified y-ion ion y7 at 751.387, matching the theoretical mass 751.387 with mass error &lt; 5 ppm. Other modified y ion masses further confirm this assignment.</li>
+</ul>
+</li>
+<li>The same modification can occur on multiple different amino acids and sites:  </li>
+</ul>
+<h4 id="next-level">next level</h4>
+<h3 id="analyzing-peptide-variants-and-peptidoforms">Analyzing peptide variants and peptidoforms</h3>
+<ol>
+<li>Analyzing peptide variants<ul>
+<li>First establish that it's the correct peptide - inspect the fragmentation pattern and compare it to that of related (possibly unmodified) variants of the same peptide</li>
+</ul>
+</li>
+<li>Analyzing peptide modification masses<ul>
+<li>Are there are other, higher-reliability modifications of similar mass identified on the same peptide? If yes, is there enough evidence to call an additional modification?</li>
+</ul>
+</li>
+<li>Analyzing modification sites<ul>
+<li>Is the same modification (or a different modification of the same mass) identified elsewhere on the same peptide? If yes, are there enough site-assignment peaks between the two sites to call an additional modification site?</li>
+<li>Filter the PSMs view for <strong>"DtFlrPeaks"</strong> &gt;= 2: </li>
+</ul>
+</li>
+</ol>
 <h3 id="analyzing-hypermodified-regions">Analyzing hypermodified regions</h3>
 <h3 id="analyzing-putative-novel-modifications">Analyzing putative novel modifications</h3>
 
